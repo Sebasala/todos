@@ -1,4 +1,3 @@
-import Todo from '../components/todo'
 import Todos from '../components/todos'
 import Main from '../components/main'
 import { getTodosData } from '../lib/todos'

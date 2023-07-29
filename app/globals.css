@@ -18,3 +18,8 @@ a {
   color: blue;
   text-decoration: none;
 }
+
+input[type="checkbox"] {
+  margin-right: 1rem;
+  cursor: pointer;
+}
