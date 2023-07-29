@@ -1,20 +1,28 @@
 {
     "todos": [
         {
+            "id": "buy-milk",
             "completed": false,
-            "description": "Buy milk"
+            "title": "Buy milk",
+            "description": "Buy milk description"
         },
         {
-            "completed": false,
-            "description": "Buy eggs"
+            "id": "buy-eggs",
+            "completed": true,
+            "title": "Buy eggs",
+            "description": "Buy eggs description"
         },
         {
+            "id": "play-catan",
             "completed": false,
-            "description": "Play Catan"
+            "title": "Play Catan",
+            "description": "Play Catan description"
         },
         {
+            "id": "last-task",
             "completed": false,
-            "description": "Last task"
+            "title": "Last task",
+            "description": "Last task description"
         }
     ]
 }
