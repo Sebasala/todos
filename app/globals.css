@@ -1,6 +1,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --accent: #301b61;
 }
 
 html,
@@ -39,10 +40,36 @@ a {
   text-decoration: none;
 }
 
-li {
+li,
+input,
+button {
   line-height: 1rem;
+}
+
+li {
   margin: 1rem 0;
   list-style: none;
+}
+
+form {
+  margin: 2rem 0;
+}
+
+input,
+button {
+  border-radius: 0.5rem;
+}
+
+input {
+  padding: calc(0.5rem - 1px);
+  border: 1px solid gray;
+}
+
+button {
+  padding: calc(0.5rem - 1px) calc(1rem - 1px);
+  background-color: var(--accent);
+  color: white;
+  border: 1px solid var(--accent);
 }
 
 @media (prefers-color-scheme: dark) {
