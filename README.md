@@ -46,16 +46,22 @@ Before running this project, ensure you have the following installed:
 
 ## Setup
 
-1. Set up the database:
+1. Create a `.env` file in the root directory and add the following environment variable:
+
+   ```env
+   DATABASE_URL="file:./dev.db"
+   ```
+
+2. Set up the database:
 
    ```bash
    npx prisma generate
-   npx prisma db push
+   npx prisma migrate dev --name init
    ```
 
    This will generate the Prisma client and create the SQLite database with the Todo model.
 
-2. (Optional) Seed the database with sample data:
+3. (Optional) Seed the database with sample data:
    - You can manually add todos via Prisma Studio or extend the app to include creation functionality.
 
 ## Running the App
