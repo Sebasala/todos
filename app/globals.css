@@ -1,7 +1,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --accent: #422586;
+  --accent: #4738b9;
 }
 
 html,
@@ -63,6 +63,8 @@ button {
 input {
   padding: calc(0.5rem - 1px);
   border: 1px solid gray;
+  margin-right: 0.5rem;
+  accent-color: var(--accent);
 }
 
 button {

@@ -14,7 +14,14 @@ export default function CreateTodo() {
         type="text"
         placeholder="New todo"
       />
-      <button type="submit">Create</button>
+      <button
+        className={styles.submit}
+        type="submit"
+        aria-label="Create todo"
+        title="Create todo"
+      >
+        +
+      </button>
     </form>
   );
 }

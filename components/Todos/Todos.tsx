@@ -1,4 +1,5 @@
-import { Todo } from "@/generated/prisma/browser";
+import TodoItem from "@/components/TodoItem/TodoItem";
+import type { Todo } from "@/generated/prisma/client";
 import { getTodos } from "@/lib/actions";
 
 export default async function Todos() {
@@ -14,7 +15,7 @@ export default async function Todos() {
       {todos.length > 0 ? (
         <ul>
           {todos.map((todo) => (
-            <li key={todo.id}>{todo.title}</li>
+            <TodoItem key={todo.id} todo={todo} />
           ))}
         </ul>
       ) : (

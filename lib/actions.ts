@@ -1,6 +1,6 @@
 "use server";
 
-import { Todo } from "@/generated/prisma/client";
+import type { Todo } from "@/generated/prisma/client";
 import { prisma } from "@/lib/prisma";
 import { validateSmallText } from "@/lib/validation";
 import { revalidatePath } from "next/cache";
@@ -47,6 +47,30 @@ export async function createTodo(formData: FormData) {
     console.error("Error creating todo:", error);
     throw new Error(
       `Failed to create todo: ${error instanceof Error ? error.message : "Unknown error"}`,
+    );
+  }
+}
+
+/**
+ * Toggles the completed status of a todo item.
+ * @param id - The ID of the todo item to toggle.
+ * @throws Throws an error if the toggle operation fails.
+ */
+export async function toggleComplete(id: number) {
+  try {
+    const todo = await prisma.todo.findUnique({ where: { id } });
+    if (!todo) {
+      throw new Error(`Todo with id ${id} not found`);
+    }
+    await prisma.todo.update({
+      where: { id },
+      data: { completed: !todo.completed },
+    });
+    revalidatePath("/");
+  } catch (error) {
+    console.error("Error toggling completed todo status", error);
+    throw new Error(
+      `Failed to toggle completed status: ${error instanceof Error ? error.message : "Unknown error"}`,
     );
   }
 }
