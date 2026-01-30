@@ -129,7 +129,3 @@ This project is private and not licensed for public use.
 Deploy your Next.js app easily with [Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
 
 For more details, check the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying).
-
-## POC Rebase
-
-This is a POC to test rebase on local and git.
