@@ -74,24 +74,3 @@ export async function toggleComplete(id: number) {
     );
   }
 }
-
-/**
- * Deletes a todo by its ID.
- * @param id - The unique identifier of the todo to delete
- * @throws Error if the todo is not found or deletion fails
- */
-export async function deleteTodo(id: number) {
-  try {
-    const todo = await prisma.todo.findUnique({ where: { id } });
-    if (!todo) {
-      throw new Error(`Todo with id ${id} not found`);
-    }
-    await prisma.todo.delete({ where: { id } });
-    revalidatePath("/");
-  } catch (error) {
-    console.error("Error deleting todo", error);
-    throw new Error(
-      `Failed to delete todo: ${error instanceof Error ? error.message : "Unknown error"}`,
-    );
-  }
-}
