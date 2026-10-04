@@ -22,7 +22,7 @@ A simple, server-side rendered todo application built with Next.js, TypeScript, 
 Before running this project, ensure you have the following installed:
 
 - [Node.js](https://nodejs.org) (v18 or later)
-- [npm](https://npmjs.com) or [yarn](https://yarnpkg.com) or [pnpm](https://pnpm.io) or [bun](https://bun.sh)
+- [pnpm](https://pnpm.io) (use the version pinned in `package.json` under `packageManager`)
 
 ## Installation
 
@@ -34,14 +34,9 @@ Before running this project, ensure you have the following installed:
    ```
 
 2. Install dependencies:
+
    ```bash
-   npm install
-   # or
-   yarn install
-   # or
    pnpm install
-   # or
-   bun install
    ```
 
 ## Setup
@@ -55,8 +50,8 @@ Before running this project, ensure you have the following installed:
 2. Set up the database:
 
    ```bash
-   npx prisma generate
-   npx prisma migrate dev --name init
+   pnpm exec prisma generate
+   pnpm exec prisma migrate dev --name init
    ```
 
    This will generate the Prisma client and create the SQLite database with the Todo model.
@@ -69,13 +64,7 @@ Before running this project, ensure you have the following installed:
 Start the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser to view the app. The page will auto-update as you make changes to the code.
@@ -87,9 +76,9 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 
 ## Development
 
-- **Linting**: Run `npm run lint` to check for code issues.
-- **Building**: Use `npm run build` to create a production build.
-- **Starting Production**: Run `npm run start` after building.
+- **Linting**: Run `pnpm lint` to check for code issues.
+- **Building**: Use `pnpm build` to create a production build.
+- **Starting Production**: Run `pnpm start` after building.
 
 ## Project Structure
 
