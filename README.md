@@ -1,18 +1,18 @@
 # Todos App
 
-A simple, server-side rendered todo application built with Next.js, TypeScript, and Prisma. This app allows users to view a list of todos stored in a SQLite database.
+A simple, server-rendered todo application built with Next.js, TypeScript, and Prisma. Todos are stored in a PostgreSQL database.
 
 ## Features
 
 - **Server-Side Rendering**: Built with Next.js for optimal performance and SEO.
-- **Database Integration**: Uses Prisma ORM with SQLite for data persistence.
+- **Database Integration**: Uses Prisma ORM with PostgreSQL for data persistence.
 - **Type Safety**: Fully typed with TypeScript.
-- **Responsive Design**: Clean and simple UI for viewing todos.
+- **Todo Management**: Create, view, complete, and delete todos.
 
 ## Tech Stack
 
 - **Framework**: [Next.js](https://nextjs.org) (v16.1.4)
-- **Database**: SQLite with [Prisma](https://prisma.io) (v7.3.0)
+- **Database**: PostgreSQL with [Prisma](https://prisma.io)
 - **Language**: TypeScript
 - **Styling**: CSS Modules (built-in Next.js)
 - **Linting**: ESLint
@@ -44,20 +44,25 @@ Before running this project, ensure you have the following installed:
 1. Create a `.env` file in the root directory and add the following environment variable:
 
    ```env
-   DATABASE_URL="file:./dev.db"
+   DATABASE_URL="postgresql://USER:PASSWORD@HOST:5432/DATABASE?schema=public"
    ```
 
-2. Set up the database:
+   Replace the placeholders with the connection details for your PostgreSQL database.
+
+2. Generate the Prisma client and apply the migrations:
 
    ```bash
    pnpm exec prisma generate
-   pnpm exec prisma migrate dev --name init
+   pnpm exec prisma migrate dev
    ```
 
-   This will generate the Prisma client and create the SQLite database with the Todo model.
+   This applies the migrations in `prisma/migrations` to your database.
 
-3. (Optional) Seed the database with sample data:
-   - You can manually add todos via Prisma Studio or extend the app to include creation functionality.
+3. (Optional) Open Prisma Studio to inspect the database:
+
+   ```bash
+   pnpm exec prisma studio
+   ```
 
 ## Running the App
 
@@ -71,8 +76,20 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 
 ## Usage
 
-- The app displays a list of todos fetched from the database.
-- Currently, the app supports viewing todos. Future updates may include adding, editing, and deleting todos.
+- Create todos with the form, mark them complete with the checkbox, or delete them with the delete button.
+- Todos are currently shared: the app does not authenticate users or separate todos by account.
+
+## Authentication
+
+Authentication is not currently implemented. To add account-based access, use [Auth.js](https://authjs.dev/) with an OAuth provider such as GitHub or Google:
+
+1. Configure Auth.js and the provider, and store provider credentials and the session secret in environment variables. Follow the provider's current Auth.js setup instructions for the required variables.
+2. Add a user identity and a required user relation to the `Todo` model in `prisma/schema.prisma`, then create and apply a Prisma migration. Plan how existing todos will be assigned to users before making the relation required.
+3. Require a valid session in every Server Action and server-side data function that reads or changes todos. Hiding controls or protecting only the page is not sufficient: Server Actions can be called directly.
+4. Scope todo queries and mutations to the authenticated user's ID. For mutations, verify ownership in the database operation itself so one user cannot modify or delete another user's todos.
+5. Test unauthenticated access and cross-account access for listing, creating, completing, and deleting todos.
+
+Until those changes are implemented, the app should be treated as a shared todo list, not as a private per-user service.
 
 ## Development
 
